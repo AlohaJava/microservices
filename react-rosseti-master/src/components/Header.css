@@ -1,0 +1,9 @@
+.ant-menu-horizontal {
+    border-bottom: 0px solid transparent !important;
+    color: inherit !important;
+  }
+
+.profile-container .ant-image-img 
+{
+    border-radius: 50%;
+}

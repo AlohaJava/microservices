@@ -1,0 +1,84 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
+    hostname: "db"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+  telegram-bot:
+    image: bot
+    restart: always
+    ports: 
+      - 5000:5000
+    links:
+      - db
+    depends_on: 
+      - db
+
+  document-generator:
+    image: document-generator
+    restart: always
+    ports:
+      - 5001:5000
+    links:
+      - db
+    depends_on: 
+      - db
+    
+  email-notifier:
+    image: email-notifier
+    restart: always
+    ports:
+      - 5002:5000
+    links:
+      - db
+      - document-generator
+    depends_on: 
+      - db
+      - document-generator
+
+  suggestion-service:
+    image: suggestion-service
+    restart: always
+    ports:
+      - 5003:5000
+    links:
+      - db
+    depends_on: 
+      - db
+  
+  elasticsearch:
+    image: elasticsearch:7.9.3
+    restart: always
+    environment: 
+        discovery.type: single-node
+    ports: 
+      - 9300:9300
+      - 9200:9200
+    hostname: "elasticsearch"
+  
+  logstash:
+    image: logstash:7.9.3
+    restart: always
+    ports: 
+      - 9600:9600
+      - 5044:5044
+    depends_on:
+      - elasticsearch
+      - db
+    links: 
+      - elasticsearch
+      - db
