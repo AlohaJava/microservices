@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react'
-import {Layout, Row, Col, Image, Button, Input, Upload, Modal, Table, Select} from 'antd';
+import {Layout, Row, Col, Image, Button, Input, Upload, Modal, Table} from 'antd';
 import { useHistory } from "react-router";
 import {AppstoreOutlined, TableOutlined, DownOutlined, CheckOutlined, CloseOutlined, PlusOutlined, FileAddOutlined, UploadOutlined, AudioOutlined} from "@ant-design/icons";
 import Title from "../components/Title"
@@ -104,7 +104,8 @@ export default (props) => {
         return ref.current;
     }
 
-    var data = [{title: "Улучшение трубопровода", descr: "Улучшение трубопроводаУлучшение трубопроводаУлучшение трубопроводаУлучшение трубопровода"}, {title: "Улучшение прокладки проводов", descr: "Улучшение прокладки проводовУлучшение прокладки проводовУлучшение прокладки проводов"}]
+    var data = [{title: "Распределение налогов", descr: "На сегодня государство недополучает миллиарды налогов из-за того, что работающие на официальной работе или приезжие граждане работают неофициально. Например ремонтируют квартиры, таксуют, перепродают. С другой стороны для ИП есть обязательные налоги, которые в случае небольших подработок просто нереально выплатить. Также, например для такси, есть масса требований, которые нет смысла требовать от людей, подвозящих по пути пассажиров три-четыре раза в неделю. Это и оклейка машины, и квитанции, и медосмотры."}, 
+    {title: "Улучшение прокладки проводов", descr: "Улучшение прокладки проводовУлучшение прокладки проводовУлучшение прокладки проводов"}]
     var usersDb = [{name: "Илья", lastName: "Крутько", photo: "https://avatars.mds.yandex.net/get-zen_doc/163385/pub_5bb70bfc049c1c00aa163781_5bb70c53ad289e00ac6bf422/scale_1200" }, {name: "Даниил", lastName: "Кудряшев", photo: "https://avatars.mds.yandex.net/get-zen_doc/1894366/pub_5dd2e74d24f3107fe3149016_5dd2e897f2b9ae76f74dc5f4/scale_1200" }]
 
     var { transcript, interimTranscript, resetTranscript } = useSpeechRecognition()
@@ -137,7 +138,7 @@ export default (props) => {
     const [dataSource3, setDataSource3] = useState([
         {
           key: '1',
-          name: 'Дарья Сергеевна Золоторева',
+          name: 'Михаил Иванов',
           fee: '10',
         },
         {
@@ -239,32 +240,19 @@ export default (props) => {
                                         Наименование
                                     </div>
                                     <div>
-                                        <Input value={"Улучшение трубопровода"} placeholder="Заголовок" style={tableInputStyle} onChange={(data) => { setTitle(data.target.value); if(data.target.value == ''){setShowSimilarities(false)}else{setShowSimilarities(true)}}}/>
+                                        <Input value={"Распределение налогов"} placeholder="Заголовок" style={tableInputStyle} onChange={(data) => { setTitle(data.target.value); if(data.target.value == ''){setShowSimilarities(false)}else{setShowSimilarities(true)}}}/>
                                     </div>
                                 </div>
                                 {
                                     showSimilar
                                 }
-                                <div style={{marginBottom: 10, marginTop: -5}} >
-                                    <div style={tableTextStyle}>
-                                        Категория
-                                    </div>
-                                    <div> 
-                                        <Select size={"middle"} defaultValue="Тех. процесс" style={{ width: 150 }} disabled>
-                                            <Select value="Тех. процесс">Тех. процесс</Select>
-                                            <Select value="Сервисы">Сервисы</Select>
-                                            <Select value="Digital">Digital</Select>
-                                            <Select value="Безопасность">Безопасность</Select>
-                                            <Select value="Другое">Другое</Select>
-                                        </Select>    
-                                    </div>
-                                </div>
+                                
                                 <div>
                                     <div style={tableTextStyle}>
                                         Описание:
                                     </div>
                                     <div>
-                                        <TextArea disabled={true} suffix={<AudioOutlined />}  rows={10} value={"Сокращение транспортных расходов"} style={tableInputStyle} onChange={(data)=>{setDescrData(data.target.value); interimTranscript  = data.target.value}}></TextArea>
+                                        <TextArea disabled={true} suffix={<AudioOutlined />}  rows={10} value={"На сегодня государство недополучает миллиарды налогов из-за того, что работающие на официальной работе или приезжие граждане работают неофициально. Например ремонтируют квартиры, таксуют, перепродают. С другой стороны для ИП есть обязательные налоги, которые в случае небольших подработок просто нереально выплатить. Также, например для такси, есть масса требований, которые нет смысла требовать от людей, подвозящих по пути пассажиров три-четыре раза в неделю. Это и оклейка машины, и квитанции, и медосмотры."} style={tableInputStyle} onChange={(data)=>{setDescrData(data.target.value); interimTranscript  = data.target.value}}></TextArea>
                                     </div>
                                 </div>
 
@@ -282,7 +270,7 @@ export default (props) => {
                                         Описание предлагаемого решения:
                                     </div>
                                     <div>
-                                        <TextArea suffix={<AudioOutlined />}  rows={6} value="Сокращение транспортных расходов" style={tableInputStyle} onChange={(data)=>{setDescrData(data.target.value); interimTranscript  = data.target.value}}></TextArea>
+                                        <TextArea suffix={<AudioOutlined />}  rows={6} value="" style={tableInputStyle} onChange={(data)=>{setDescrData(data.target.value); interimTranscript  = data.target.value}}></TextArea>
                                     </div>
                                 </div>
 

@@ -9,7 +9,7 @@ const columns = [
       title: 'Название',
       dataIndex: 'name',
       key: 'name',
-      render: text => <Link to="/initiativeOne" onClick={()=>{}}>{text}</Link>,
+      render: text => <Link to="/initiativeOne" onClick={console.log("idi nahui")}>{text}</Link>,
     },
     {
         title: 'Автор',
@@ -60,7 +60,7 @@ const columns = [
             <>
               {category.map(tag => {
                 let color = tag.length > 5 ? 'geekblue' : 'green';
-                if (tag === 'Формальное Описание') {
+                if (tag === 'Реализация') {
                   color = 'geekblue';
                 }
                 if (tag === 'Модерация') {

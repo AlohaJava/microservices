@@ -9,7 +9,7 @@ const columns = [
       title: 'Название',
       dataIndex: 'name',
       key: 'name',
-      render: text => <Link to="/initiativeOne" onClick={console.log("idi nahui")}>{text}</Link>,
+      render: text => <Link to="/initiativeOne" onClick={()=>{}}>{text}</Link>,
     },
     {
         title: 'Автор',
@@ -51,7 +51,36 @@ const columns = [
               })}
             </>
           ),
-        }
+        },
+        {
+          title: 'Этап',
+          dataIndex: 'statuse',
+          key: 'statuse',
+          render: category => (
+            <>
+              {category.map(tag => {
+                let color = tag.length > 5 ? 'geekblue' : 'green';
+                if (tag === 'Реализация') {
+                  color = 'geekblue';
+                }
+                if (tag === 'Модерация') {
+                  color = 'green';
+                }
+                if (tag === 'Формальное Описание') {
+                  color = 'yellow';
+                }
+                if (tag === 'Отклоненно') {
+                  color = 'red';
+                }
+                return (
+                  <Tag color={color} key={tag}>
+                    {tag.toUpperCase()}
+                  </Tag>
+                );
+              })}
+            </>
+          ),
+        },
   ];
   
   const data = [
@@ -62,47 +91,62 @@ const columns = [
       raiting : "11",
       messages : "3",
       category: ['Тех. процесс'],
+      statuse: ["Модерация"]
+  },
+  {
+    key: '1',
+    name: 'Тестовый топик',
+    author: 'Дарья Сергеевна Золоторева',
+    raiting : "11",
+    messages : "3",
+    category: ['Тех. процесс'],
+    statuse: ["Модерация"]
+  },
+  {
+      key: '2',
+      name: 'Тестовая статья',
+      author: 'Дарья Сергеевна Золоторева',
+      raiting : "10",
+      messages : "5",
+      category: ['Сервисы'],
+      statuse: ["Отклоненно"]
     },
     {
-        key: '2',
-        name: 'Тестовая статья',
-        author: 'Дарья Сергеевна Золоторева',
-        raiting : "10",
-        messages : "5",
-        category: ['Сервисы'],
+        key: '3',
+        name: 'Распределение налогов',
+        author: 'Михаил Иванов',
+        raiting : "12",
+        messages : "3",
+        category: ['Другое'],
+        statuse: ["Модерация"]
       },
       {
-          key: '3',
-          name: 'Распределение налогов',
+          key: '4',
+          name: 'Россети тестовая статья',
           author: 'Дарья Сергеевна Золоторева',
-          raiting : "12",
-          messages : "3",
-          category: ['Другое'],
+          raiting : "2",
+          messages : "0",
+          category: ['Безопасность'],
+          statuse: ["Модерация"]
         },
         {
-            key: '4',
-            name: 'Россети тестовая статья',
+            key: '5',
+            name: 'Росссети',
             author: 'Дарья Сергеевна Золоторева',
-            raiting : "2",
+            raiting : "0",
             messages : "0",
-            category: ['Безопасность'],
+            category: ['Digital'],
+            statuse: ["Реализация"]
           },
           {
-              key: '5',
-              name: 'Росссети',
+              key: '6',
+              name: 'Расширение транспортной сети',
               author: 'Дарья Сергеевна Золоторева',
               raiting : "0",
               messages : "0",
-              category: ['Digital'],
-            },
-            {
-                key: '6',
-                name: 'Расширение транспортной сети',
-                author: 'Дарья Сергеевна Золоторева',
-                raiting : "0",
-                messages : "0",
-                category: ['Другое'],
-              }
+              category: ['Другое'],
+              statuse: ["Реализация"]
+            }
   ];
 
   const { Search } = Input;
